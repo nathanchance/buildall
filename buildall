@@ -1,0 +1,22 @@
+#!/bin/sh
+
+./build alpha
+./build arm
+./build avr
+./build bfin
+./build cris
+./build frv
+./build h8300
+./build i386
+./build ia64
+./build m32r
+./build m68k
+./build mips64
+./build hppa
+./build powerpc64
+./build s390
+./build sh64
+./build sparc64
+./build v850
+./build x86_64
+./build xtensa

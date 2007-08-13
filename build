@@ -1,0 +1,78 @@
+#!/bin/sh
+
+ARCH=$1
+DEFCONFIG=$2
+MAKEOPTS=-j8
+
+
+if [ $ARCH == "bfin" ]; then TARGET=bfin-linux-uclibc;
+elif [ $ARCH == "h8300" ]; then TARGET=h8300-elf;
+elif [ $ARCH == "powerpc" ]; then TARGET=powerpc64-linux;
+else TARGET=$ARCH-linux; fi
+
+
+fatal() {
+	echo "	FAILED"
+	exit $1
+}
+
+
+echo "Building $ARCH... (target $TARGET)"
+mkdir $ARCH 2>/dev/null
+cd $ARCH
+
+binutils() {
+mkdir binutils 2>/dev/null
+( \
+cd binutils && \
+echo "	binutils: configure" && \
+/home/segher/src/src/configure \
+	--target=$TARGET --prefix=/home/segher/cross \
+>../log-binutils-configure 2>&1 && \
+echo "	binutils: build" && \
+make $MAKEOPTS >../log-binutils-build 2>&1 && \
+echo "	binutils: install" && \
+make install >../log-binutils-install 2>&1 \
+) || fatal 101
+}
+
+gcc() {
+mkdir gcc 2>/dev/null
+( \
+cd gcc && \
+echo "	gcc: configure" && \
+/home/segher/src/gcc/configure \
+	--target=$TARGET --enable-targets=all \
+	--prefix=/home/segher/cross \
+	--enable-languages=c --without-headers \
+	--disable-nls --disable-multilib --disable-threads --disable-shared \
+	--disable-libmudflap --disable-libssp --disable-libgomp \
+	--disable-decimal-float \
+	--enable-sjlj-exceptions \
+	--disable-checking \
+>../log-gcc-configure 2>&1 && \
+echo "	gcc: build" && \
+make $MAKEOPTS >../log-gcc-build 2>&1 && \
+echo "	gcc: install" && \
+make install >../log-gcc-install 2>&1\
+) || fatal 102
+}
+
+kernel() {
+mkdir kernel 2>/dev/null
+( \
+cd kernel && \
+echo "	kernel: configure" && \
+ARCH=$ARCH CROSS_COMPILE=$TARGET- make -C /home/segher/src/kernel \
+	O=$PWD $DEFCONFIG \
+>../log-kernel-configure 2>&1 && \
+echo "	kernel: build" && \
+ARCH=$ARCH CROSS_COMPILE=$TARGET- make $MAKEOPTS \
+>../log-kernel-build 2>&1 \
+) || fatal 103
+}
+
+#binutils
+#gcc
+kernel
+echo "	OK"
