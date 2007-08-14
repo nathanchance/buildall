@@ -5,9 +5,12 @@ DEFCONFIG=$2
 MAKEOPTS=-j8
 
 
-if [ $ARCH == "bfin" ]; then TARGET=bfin-linux-uclibc;
+if [ $ARCH == "blackfin" ]; then TARGET=bfin-linux-uclibc;
 elif [ $ARCH == "h8300" ]; then TARGET=h8300-elf;
+elif [ $ARCH == "m68knommu" ]; then TARGET=m68k-linux;
+elif [ $ARCH == "parisc" ]; then TARGET=hppa-linux;
 elif [ $ARCH == "powerpc" ]; then TARGET=powerpc64-linux;
+elif [ $ARCH == "ppc" ]; then TARGET=powerpc64-linux;
 else TARGET=$ARCH-linux; fi
 
 
@@ -72,7 +75,7 @@ ARCH=$ARCH CROSS_COMPILE=$TARGET- make $MAKEOPTS \
 ) || fatal 103
 }
 
-#binutils
-#gcc
+binutils
+gcc
 kernel
 echo "	OK"
