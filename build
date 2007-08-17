@@ -9,20 +9,21 @@ if [ $ARCH == "blackfin" ]; then TARGET=bfin-linux-uclibc;
 elif [ $ARCH == "h8300" ]; then TARGET=h8300-elf;
 elif [ $ARCH == "m68knommu" ]; then TARGET=m68k-linux;
 elif [ $ARCH == "parisc" ]; then TARGET=hppa-linux;
-elif [ $ARCH == "powerpc" ]; then TARGET=powerpc64-linux;
-elif [ $ARCH == "ppc" ]; then TARGET=powerpc64-linux;
+elif [ $ARCH == "ppc" ]; then TARGET=powerpc-linux;
 else TARGET=$ARCH-linux; fi
-
-
-fatal() {
-	echo "	FAILED"
-	exit $1
-}
-
 
 echo "Building $ARCH... (target $TARGET)"
 mkdir $ARCH 2>/dev/null
 cd $ARCH
+
+if [ $ARCH == "powerpc64" ]; then ARCH=powerpc; fi
+
+
+fatal() {
+	echo -e "\t\e[31mFAILED\e[0m"
+	exit $1
+}
+
 
 binutils() {
 mkdir binutils 2>/dev/null
@@ -78,4 +79,4 @@ ARCH=$ARCH CROSS_COMPILE=$TARGET- make $MAKEOPTS \
 binutils
 gcc
 kernel
-echo "	OK"
+echo -e "\t\e[32mOK\e[0m"
