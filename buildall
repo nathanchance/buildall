@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
+# Released under the terms of the GNU GPL, version 2
+
 ./build alpha defconfig
 ./build arm defconfig
 ./build avr32 defconfig
