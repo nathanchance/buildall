@@ -13,6 +13,7 @@ elif [ $ARCH == "h8300" ]; then TARGET=h8300-elf;
 elif [ $ARCH == "m68knommu" ]; then TARGET=m68k-linux;
 elif [ $ARCH == "parisc" ]; then TARGET=hppa-linux;
 elif [ $ARCH == "ppc" ]; then TARGET=powerpc-linux;
+elif [ $ARCH == "sh" ]; then TARGET=sh3-linux;
 else TARGET=$ARCH-linux; fi
 
 echo "Building $ARCH... (target $TARGET)"
@@ -52,7 +53,7 @@ echo "	gcc: configure" && \
 	--target=$TARGET --enable-targets=all \
 	--prefix=/home/segher/cross \
 	--enable-languages=c --without-headers \
-	--disable-nls --disable-multilib --disable-threads --disable-shared \
+	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
 	--enable-sjlj-exceptions \
