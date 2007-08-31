@@ -8,7 +8,8 @@ DEFCONFIG=$2
 MAKEOPTS=-j8
 
 
-if [ $ARCH == "blackfin" ]; then TARGET=bfin-linux-uclibc;
+if [ $ARCH == "avr32" ]; then TARGET=avr-linux;
+elif [ $ARCH == "blackfin" ]; then TARGET=bfin-linux-uclibc;
 elif [ $ARCH == "h8300" ]; then TARGET=h8300-elf;
 elif [ $ARCH == "m68knommu" ]; then TARGET=m68k-linux;
 elif [ $ARCH == "parisc" ]; then TARGET=hppa-linux;
@@ -53,11 +54,10 @@ echo "	gcc: configure" && \
 	--target=$TARGET --enable-targets=all \
 	--prefix=/home/segher/cross \
 	--enable-languages=c --without-headers \
+	--enable-sjlj-exceptions --with-system-libunwind \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
-	--enable-sjlj-exceptions \
-	--disable-checking \
 >../log-gcc-configure 2>&1 && \
 echo "	gcc: build" && \
 make $MAKEOPTS >../log-gcc-build 2>&1 && \
@@ -65,6 +65,7 @@ echo "	gcc: install" && \
 make install >../log-gcc-install 2>&1\
 ) || fatal 102
 }
+#	--disable-checking \
 
 kernel() {
 mkdir kernel 2>/dev/null
