@@ -58,6 +58,7 @@ echo "	gcc: configure" && \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
+	--enable-checking=yes,rtl \
 >../log-gcc-configure 2>&1 && \
 echo "	gcc: build" && \
 make $MAKEOPTS >../log-gcc-build 2>&1 && \
