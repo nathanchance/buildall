@@ -25,7 +25,7 @@ if [ $ARCH == "powerpc64" ]; then ARCH=powerpc; fi
 
 
 fatal() {
-	echo -e "\t\e[31mFAILED\e[0m"
+	echo -e "\n\t\e[31mFAILED\e[0m"
 	exit $1
 }
 
@@ -34,14 +34,15 @@ binutils() {
 mkdir binutils 2>/dev/null
 ( \
 cd binutils && \
-echo "	binutils: configure" && \
+echo -ne "\tbinutils: configure" && \
 /home/segher/src/src/configure \
 	--target=$TARGET --prefix=/home/segher/cross \
 >../log-binutils-configure 2>&1 && \
-echo "	binutils: build" && \
+echo -n " build" && \
 make $MAKEOPTS >../log-binutils-build 2>&1 && \
-echo "	binutils: install" && \
-make install >../log-binutils-install 2>&1 \
+echo -n " install" && \
+make install >../log-binutils-install 2>&1 && \
+echo \
 ) || fatal 101
 }
 
@@ -49,7 +50,7 @@ gcc() {
 mkdir gcc 2>/dev/null
 ( \
 cd gcc && \
-echo "	gcc: configure" && \
+echo -ne "\tgcc: configure" && \
 /home/segher/src/gcc/configure \
 	--target=$TARGET --enable-targets=all \
 	--prefix=/home/segher/cross \
@@ -60,10 +61,11 @@ echo "	gcc: configure" && \
 	--disable-decimal-float \
 	--enable-checking=yes,rtl \
 >../log-gcc-configure 2>&1 && \
-echo "	gcc: build" && \
+echo -n " build" && \
 make $MAKEOPTS >../log-gcc-build 2>&1 && \
-echo "	gcc: install" && \
-make install >../log-gcc-install 2>&1\
+echo -n " install" && \
+make install >../log-gcc-install 2>&1 && \
+echo \
 ) || fatal 102
 }
 #	--disable-checking \
@@ -72,13 +74,14 @@ kernel() {
 mkdir kernel 2>/dev/null
 ( \
 cd kernel && \
-echo "	kernel: configure" && \
+echo -ne "\tkernel: configure" && \
 ARCH=$ARCH CROSS_COMPILE=$TARGET- make -C /home/segher/src/kernel \
 	O=$PWD $DEFCONFIG \
 >../log-kernel-configure 2>&1 && \
-echo "	kernel: build" && \
+echo -n " build" && \
 ARCH=$ARCH CROSS_COMPILE=$TARGET- make $MAKEOPTS \
->../log-kernel-build 2>&1 \
+>../log-kernel-build 2>&1 && \
+echo \
 ) || fatal 103
 }
 
