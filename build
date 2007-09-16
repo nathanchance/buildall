@@ -7,6 +7,7 @@ ARCH=$1
 DEFCONFIG=$2
 MAKEOPTS=-j8
 
+export PATH=/home/segher/tot/bin:$PATH
 
 if [ $ARCH == "avr32" ]; then TARGET=avr-linux;
 elif [ $ARCH == "blackfin" ]; then TARGET=bfin-linux-uclibc;
@@ -35,10 +36,11 @@ mkdir binutils 2>/dev/null
 ( \
 cd binutils && \
 echo -ne "\tbinutils:" && \
-../timert configure ../log-binutils-configure /home/segher/src/src/configure \
+../../timert configure ../log-binutils-configure \
+	/home/segher/src/src/configure \
 	--target=$TARGET --prefix=/home/segher/cross && \
-../timert build ../log-binutils-build make $MAKEOPTS && \
-../timert install ../log-binutils-install make install && \
+../../timert build ../log-binutils-build make $MAKEOPTS && \
+../../timert install ../log-binutils-install make install && \
 echo \
 ) || fatal 101
 }
@@ -48,7 +50,7 @@ mkdir gcc 2>/dev/null
 ( \
 cd gcc && \
 echo -ne "\t     gcc:" && \
-../timert configure ../log-gcc-configure /home/segher/src/gcc/configure \
+../../timert configure ../log-gcc-configure /home/segher/src/gcc/configure \
 	--target=$TARGET --enable-targets=all \
 	--prefix=/home/segher/cross \
 	--enable-languages=c --without-headers \
@@ -56,8 +58,8 @@ echo -ne "\t     gcc:" && \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
 	--enable-checking=yes,rtl && \
-../timert build ../log-gcc-build make $MAKEOPTS && \
-../timert install ../log-gcc-install make install && \
+../../timert build ../log-gcc-build make $MAKEOPTS && \
+../../timert install ../log-gcc-install make install && \
 echo \
 ) || fatal 102
 }
@@ -68,10 +70,10 @@ mkdir kernel 2>/dev/null
 ( \
 cd kernel && \
 echo -ne "\t  kernel:" && \
-../timert configure ../log-kernel-configure \
+../../timert configure ../log-kernel-configure \
 	make ARCH=$ARCH CROSS_COMPILE=$TARGET- -C /home/segher/src/kernel \
 	O=$PWD $DEFCONFIG && \
-../timert build ../log-kernel-build \
+../../timert build ../log-kernel-build \
 	make ARCH=$ARCH CROSS_COMPILE=$TARGET- $MAKEOPTS && \
 echo \
 ) || fatal 103
