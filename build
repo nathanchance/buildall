@@ -50,7 +50,7 @@ gcc() {
 mkdir gcc 2>/dev/null
 ( \
 cd gcc && \
-echo -ne "\tgcc: configure" && \
+echo -ne "\t     gcc: configure" && \
 /home/segher/src/gcc/configure \
 	--target=$TARGET --enable-targets=all \
 	--prefix=/home/segher/cross \
@@ -74,7 +74,7 @@ kernel() {
 mkdir kernel 2>/dev/null
 ( \
 cd kernel && \
-echo -ne "\tkernel: configure" && \
+echo -ne "\t  kernel: configure" && \
 ARCH=$ARCH CROSS_COMPILE=$TARGET- make -C /home/segher/src/kernel \
 	O=$PWD $DEFCONFIG \
 >../log-kernel-configure 2>&1 && \
