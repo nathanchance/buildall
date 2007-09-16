@@ -55,7 +55,6 @@ echo -ne "\t     gcc: configure" && \
 	--target=$TARGET --enable-targets=all \
 	--prefix=/home/segher/cross \
 	--enable-languages=c --without-headers \
-	--enable-sjlj-exceptions --with-system-libunwind \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
@@ -68,7 +67,7 @@ make install >../log-gcc-install 2>&1 && \
 echo \
 ) || fatal 102
 }
-#	--disable-checking \
+##	--enable-sjlj-exceptions --with-system-libunwind \
 
 kernel() {
 mkdir kernel 2>/dev/null
