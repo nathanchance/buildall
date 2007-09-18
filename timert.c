@@ -71,7 +71,7 @@ int main(int argc, char **argv)
 			error("fork()");
 
 		case 0:
-			fd = creat(argv[2], 0777);
+			fd = creat(argv[2], 0666);
 			if (fd < 0)
 				error("creat()");
 
