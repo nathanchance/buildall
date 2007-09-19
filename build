@@ -26,7 +26,7 @@ if [ $ARCH == "powerpc64" ]; then ARCH=powerpc; fi
 
 
 fatal() {
-	echo -e "\n\t\e[31mFAILED\e[0m"
+	echo -e "  \e[31mFAILED\e[0m"
 	exit $1
 }
 
@@ -35,7 +35,7 @@ binutils() {
 mkdir binutils 2>/dev/null
 ( \
 cd binutils && \
-echo -ne "\tbinutils:" && \
+echo -ne "  binutils:" && \
 ../../timert configure ../log-binutils-configure \
 	/home/segher/src/src/configure \
 	--target=$TARGET --prefix=/home/segher/cross && \
@@ -49,11 +49,12 @@ gcc() {
 mkdir gcc 2>/dev/null
 ( \
 cd gcc && \
-echo -ne "\t     gcc:" && \
+echo -ne "       gcc:" && \
 ../../timert configure ../log-gcc-configure /home/segher/src/gcc/configure \
 	--target=$TARGET --enable-targets=all \
 	--prefix=/home/segher/cross \
 	--enable-languages=c --without-headers \
+	--enable-sjlj-exceptions --with-system-libunwind \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
@@ -69,17 +70,16 @@ kernel() {
 mkdir kernel 2>/dev/null
 ( \
 cd kernel && \
-echo -ne "\t  kernel:" && \
+echo -ne "    kernel:" && \
 ../../timert configure ../log-kernel-configure \
 	make ARCH=$ARCH CROSS_COMPILE=$TARGET- -C /home/segher/src/kernel \
 	O=$PWD $DEFCONFIG && \
 ../../timert build ../log-kernel-build \
-	make ARCH=$ARCH CROSS_COMPILE=$TARGET- $MAKEOPTS && \
-echo \
+	make ARCH=$ARCH CROSS_COMPILE=$TARGET- $MAKEOPTS \
 ) || fatal 103
 }
 
 binutils
 gcc
 kernel
-echo -e "\t\e[32mOK\e[0m"
+echo -e "  \e[32mOK\e[0m"
