@@ -7,7 +7,7 @@ ARCH=$1
 DEFCONFIG=$2
 MAKEOPTS=-j8
 
-export PATH=/home/segher/tot/bin:$PATH
+#export PATH=/home/segher/tot/bin:$PATH
 
 if [ $ARCH == "avr32" ]; then TARGET=avr-linux;
 elif [ $ARCH == "blackfin" ]; then TARGET=bfin-linux-uclibc;
@@ -58,7 +58,7 @@ echo -ne "       gcc:" && \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
-	--enable-checking=yes,rtl && \
+	--enable-checking=yes,rtl,df && \
 ../../timert build ../log-gcc-build make $MAKEOPTS && \
 ../../timert install ../log-gcc-install make install && \
 echo \
@@ -75,7 +75,10 @@ echo -ne "    kernel:" && \
 	make ARCH=$ARCH CROSS_COMPILE=$TARGET- -C /home/segher/src/kernel \
 	O=$PWD $DEFCONFIG && \
 ../../timert build ../log-kernel-build \
-	make ARCH=$ARCH CROSS_COMPILE=$TARGET- $MAKEOPTS \
+	make ARCH=$ARCH CROSS_COMPILE=$TARGET- $MAKEOPTS && \
+	echo -n "  " && \
+	echo -n $(grep -ci "warning:" ../log-kernel-build) && \
+	echo -n " warnings" \
 ) || fatal 103
 }
 
