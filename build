@@ -3,11 +3,17 @@
 # Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
+BUILD_TOOLCHAIN=yes
+case $1 in
+  --kernel) BUILD_TOOLCHAIN=no; shift ;;
+esac
+
 ARCH=$1
-DEFCONFIG=$2
+DEFCONFIG=${2:-defconfig}
 MAKEOPTS=-j8
 
 #export PATH=/home/segher/tot/bin:$PATH
+
 
 if [ $ARCH == "avr32" ]; then TARGET=avr-linux;
 elif [ $ARCH == "blackfin" ]; then TARGET=bfin-linux-uclibc;
@@ -17,6 +23,7 @@ elif [ $ARCH == "parisc" ]; then TARGET=hppa-linux;
 elif [ $ARCH == "ppc" ]; then TARGET=powerpc-linux;
 elif [ $ARCH == "sh" ]; then TARGET=sh3-linux;
 else TARGET=$ARCH-linux; fi
+
 
 echo "Building $ARCH... (target $TARGET)"
 mkdir $ARCH 2>/dev/null
@@ -45,6 +52,7 @@ echo \
 ) || fatal 101
 }
 
+
 gcc() {
 mkdir gcc 2>/dev/null
 ( \
@@ -66,6 +74,7 @@ echo \
 }
 ##	--enable-sjlj-exceptions --with-system-libunwind \
 
+
 kernel() {
 mkdir kernel 2>/dev/null
 ( \
@@ -82,7 +91,10 @@ echo -ne "    kernel:" && \
 ) || fatal 103
 }
 
-binutils
-gcc
+
+case $BUILD_TOOLCHAIN in
+	yes) binutils; gcc ;;
+esac
+
 kernel
 echo -e "  \e[32mOK\e[0m"
