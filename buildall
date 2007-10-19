@@ -20,7 +20,7 @@
 ./build "$@" parisc
 #./build "$@" parisc64
 ./build "$@" powerpc pmac32_defconfig
-./build "$@" powerpc64 ppc64_defconfig
+./build "$@" powerpc64
 ./build "$@" ppc ebony_defconfig
 ./build "$@" s390
 #./build "$@" s390-64
