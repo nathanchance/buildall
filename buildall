@@ -3,31 +3,31 @@
 # Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
-./build alpha
-./build arm
-./build avr32
-./build blackfin BF561-EZKIT_defconfig # defconfig doesn't build currently
-./build cris
-./build frv
-./build h8300
-./build i386
-./build ia64
-./build m32r
-./build m68k
-./build m68knommu
-./build mips
-#./build mips64
-./build parisc
-#./build parisc64
-./build powerpc pmac32_defconfig
-./build powerpc64 ppc64_defconfig
-./build ppc ebony_defconfig
-./build s390
-#./build s390-64
-./build sh
-./build sh64
-./build sparc
-./build sparc64
-./build v850
-./build x86_64
-./build xtensa
+./build "$@" alpha
+./build "$@" arm
+./build "$@" avr32
+./build "$@" blackfin BF561-EZKIT_defconfig # defconfig doesn't build currently
+./build "$@" cris
+./build "$@" frv
+./build "$@" h8300
+./build "$@" i386
+./build "$@" ia64
+./build "$@" m32r
+./build "$@" m68k
+./build "$@" m68knommu
+./build "$@" mips
+#./build "$@" mips64
+./build "$@" parisc
+#./build "$@" parisc64
+./build "$@" powerpc pmac32_defconfig
+./build "$@" powerpc64 ppc64_defconfig
+./build "$@" ppc ebony_defconfig
+./build "$@" s390
+#./build "$@" s390-64
+./build "$@" sh
+./build "$@" sh64
+./build "$@" sparc
+./build "$@" sparc64
+./build "$@" v850
+./build "$@" x86_64
+./build "$@" xtensa
