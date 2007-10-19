@@ -5,7 +5,7 @@
 
 BUILD_TOOLCHAIN=yes
 case $1 in
-  --kernel) BUILD_TOOLCHAIN=no; shift ;;
+	--kernel) BUILD_TOOLCHAIN=no; shift ;;
 esac
 
 ARCH=$1
@@ -14,15 +14,16 @@ MAKEOPTS=-j8
 
 #export PATH=/home/segher/tot/bin:$PATH
 
-
-if [ $ARCH == "avr32" ]; then TARGET=avr-linux;
-elif [ $ARCH == "blackfin" ]; then TARGET=bfin-linux-uclibc;
-elif [ $ARCH == "h8300" ]; then TARGET=h8300-elf;
-elif [ $ARCH == "m68knommu" ]; then TARGET=m68k-linux;
-elif [ $ARCH == "parisc" ]; then TARGET=hppa-linux;
-elif [ $ARCH == "ppc" ]; then TARGET=powerpc-linux;
-elif [ $ARCH == "sh" ]; then TARGET=sh3-linux;
-else TARGET=$ARCH-linux; fi
+case $ARCH in
+	avr32)		TARGET=avr-linux ;;
+	blackfin)	TARGET=bfin-linux-uclibc ;;
+	h8300)		TARGET=h8300-elf ;;
+	m68knommu)	TARGET=m68k-linux ;;
+	parisc)		TARGET=hppa-linux ;;
+	ppc)		TARGET=powerpc-linux ;;
+	sh)		TARGET=sh3-linux ;;
+	*)		TARGET=$ARCH-linux ;;
+esac
 
 
 echo "Building $ARCH... (target $TARGET)"
