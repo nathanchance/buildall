@@ -16,7 +16,7 @@ MAKEOPTS=-j8
 
 case $ARCH in
 	avr32)		TARGET=avr-linux ;;
-	blackfin)	TARGET=bfin-linux-uclibc ;;
+	blackfin)	TARGET=bfin-uclinux ;;
 	h8300)		TARGET=h8300-elf ;;
 	m68knommu)	TARGET=m68k-linux ;;
 	parisc)		TARGET=hppa-linux ;;
