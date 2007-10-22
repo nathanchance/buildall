@@ -6,7 +6,7 @@
 ./build "$@" alpha
 ./build "$@" arm
 ./build "$@" avr32
-./build "$@" blackfin BF561-EZKIT_defconfig # defconfig doesn't build currently
+./build "$@" blackfin
 ./build "$@" cris
 ./build "$@" frv
 ./build "$@" h8300
