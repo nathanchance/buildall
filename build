@@ -12,14 +12,13 @@ ARCH=$1
 DEFCONFIG=${2:-defconfig}
 MAKEOPTS=-j8
 
-#export PATH=/home/segher/tot/bin:$PATH
-
 case $ARCH in
 	avr32)		TARGET=avr-linux ;;
 	blackfin)	TARGET=bfin-uclinux ;;
 	h8300)		TARGET=h8300-elf ;;
 	m68knommu)	TARGET=m68k-linux ;;
 	parisc)		TARGET=hppa-linux ;;
+	parisc64)	TARGET=hppa64-linux ;;
 	ppc)		TARGET=powerpc-linux ;;
 	sh)		TARGET=sh3-linux ;;
 	*)		TARGET=$ARCH-linux ;;
@@ -30,7 +29,11 @@ echo "Building $ARCH... (target $TARGET)"
 mkdir $ARCH 2>/dev/null
 cd $ARCH
 
-if [ $ARCH == "powerpc64" ]; then ARCH=powerpc; fi
+case $ARCH in
+	mips64)		ARCH=mips ;;
+	parisc64)	ARCH=parisc ;;
+	powerpc64)	ARCH=powerpc ;;
+esac
 
 
 fatal() {

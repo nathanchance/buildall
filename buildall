@@ -16,14 +16,13 @@
 ./build "$@" m68k
 ./build "$@" m68knommu
 ./build "$@" mips
-#./build "$@" mips64
+./build "$@" mips64 ip32_defconfig
 ./build "$@" parisc
-#./build "$@" parisc64
+./build "$@" parisc64 a500_defconfig
 ./build "$@" powerpc pmac32_defconfig
 ./build "$@" powerpc64
 ./build "$@" ppc ebony_defconfig
 ./build "$@" s390
-#./build "$@" s390-64
 ./build "$@" sh
 ./build "$@" sh64
 ./build "$@" sparc
