@@ -4,6 +4,8 @@
 #include <signal.h>
 #include <fcntl.h>
 #include <time.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 unsigned int start_time;
 
@@ -31,6 +33,7 @@ static void sigchld_handler(int signo, siginfo_t *si, void *uc)
 			fprintf(stderr, "continued\n");
 			break;
 		default:
+			wait(0);
 			print_time();
 			exit(si->si_status);
 	}
