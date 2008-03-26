@@ -15,6 +15,7 @@
 ./build "$@" m32r
 ./build "$@" m68k
 ./build "$@" m68knommu
+./build "$@" mn10300
 ./build "$@" mips
 ./build "$@" mips64 ip32_defconfig
 ./build "$@" parisc
@@ -24,7 +25,7 @@
 ./build "$@" ppc ebony_defconfig
 ./build "$@" s390
 ./build "$@" sh
-./build "$@" sh64
+./build "$@" sh64 cayman_defconfig
 ./build "$@" sparc
 ./build "$@" sparc64
 ./build "$@" v850

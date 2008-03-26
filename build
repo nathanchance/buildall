@@ -10,17 +10,19 @@ esac
 
 ARCH=$1
 DEFCONFIG=${2:-defconfig}
-MAKEOPTS=-j8
+MAKEOPTS=-j4
 
 case $ARCH in
 	avr32)		TARGET=avr-linux ;;
 	blackfin)	TARGET=bfin-uclinux ;;
 	h8300)		TARGET=h8300-elf ;;
 	m68knommu)	TARGET=m68k-linux ;;
+	mn10300)	TARGET=am33_2.0-linux ;;
 	parisc)		TARGET=hppa-linux ;;
 	parisc64)	TARGET=hppa64-linux ;;
 	ppc)		TARGET=powerpc-linux ;;
 	sh)		TARGET=sh3-linux ;;
+	v850)		TARGET=v850e-linux ;;
 	*)		TARGET=$ARCH-linux ;;
 esac
 
@@ -33,6 +35,7 @@ case $ARCH in
 	mips64)		ARCH=mips ;;
 	parisc64)	ARCH=parisc ;;
 	powerpc64)	ARCH=powerpc ;;
+	sh64)		ARCH=sh ;;
 esac
 
 
@@ -65,12 +68,13 @@ echo -ne "       gcc:" && \
 ../../timert configure ../log-gcc-configure /home/segher/src/gcc/configure \
 	--target=$TARGET --enable-targets=all \
 	--prefix=/home/segher/cross \
+	--with-mpfr=/opt/cfarm/mpfr-2.3.1 \
 	--enable-languages=c --without-headers \
 	--enable-sjlj-exceptions --with-system-libunwind \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
-	--enable-checking=yes,rtl,df && \
+	--enable-checking=yes,rtl && \
 ../../timert build ../log-gcc-build make $MAKEOPTS && \
 ../../timert install ../log-gcc-install make install && \
 echo \
