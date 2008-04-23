@@ -22,7 +22,7 @@
 ./build "$@" parisc64 a500_defconfig
 ./build "$@" powerpc pmac32_defconfig
 ./build "$@" powerpc64
-./build "$@" ppc ebony_defconfig
+./build "$@" ppc
 ./build "$@" s390
 ./build "$@" sh
 ./build "$@" sh64 cayman_defconfig
