@@ -3,6 +3,26 @@
 # Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
+
+# Set these paths to the appropriate values for your local setup
+
+# Where are the various source trees
+BINUTILS_SRC=/home/segher/src/src
+GCC_SRC=/home/segher/src/gcc
+KERNEL_SRC=/home/segher/src/kernel
+
+# Where to find the host mpfr library
+MPFR=/opt/cfarm/mpfr-2.3.1
+
+# Where to install the cross toolchains
+PREFIX=/home/segher/cross
+
+# Options for make
+MAKEOPTS=-j4
+
+# End of configuration section.
+
+
 BUILD_TOOLCHAIN=yes
 case $1 in
 	--kernel) BUILD_TOOLCHAIN=no; shift ;;
@@ -10,7 +30,6 @@ esac
 
 ARCH=$1
 DEFCONFIG=${2:-defconfig}
-MAKEOPTS=-j4
 
 case $ARCH in
 	avr32)		TARGET=avr-linux ;;
@@ -51,8 +70,7 @@ mkdir binutils 2>/dev/null
 cd binutils && \
 echo -ne "  binutils:" && \
 ../../timert configure ../log-binutils-configure \
-	/home/segher/src/src/configure \
-	--target=$TARGET --prefix=/home/segher/cross && \
+	$BINUTILS_SRC/configure --target=$TARGET --prefix=$PREFIX && \
 ../../timert build ../log-binutils-build make $MAKEOPTS && \
 ../../timert install ../log-binutils-install make install && \
 echo \
@@ -65,10 +83,10 @@ mkdir gcc 2>/dev/null
 ( \
 cd gcc && \
 echo -ne "       gcc:" && \
-../../timert configure ../log-gcc-configure /home/segher/src/gcc/configure \
-	--target=$TARGET --enable-targets=all \
-	--prefix=/home/segher/cross \
-	--with-mpfr=/opt/cfarm/mpfr-2.3.1 \
+../../timert configure ../log-gcc-configure \
+	$GCC_SRC/configure \
+	--target=$TARGET --enable-targets=all --prefix=$PREFIX \
+	--with-mpfr=$MPFR \
 	--enable-languages=c --without-headers \
 	--enable-sjlj-exceptions --with-system-libunwind \
 	--disable-nls --disable-threads --disable-shared \
@@ -89,8 +107,8 @@ mkdir kernel 2>/dev/null
 cd kernel && \
 echo -ne "    kernel:" && \
 ../../timert configure ../log-kernel-configure \
-	make ARCH=$ARCH CROSS_COMPILE=$TARGET- -C /home/segher/src/kernel \
-	O=$PWD $DEFCONFIG && \
+	make ARCH=$ARCH CROSS_COMPILE=$TARGET- \
+	-C $KERNEL_SRC O=$PWD $DEFCONFIG && \
 ../../timert build ../log-kernel-build \
 	make ARCH=$ARCH CROSS_COMPILE=$TARGET- $MAKEOPTS && \
 	echo -n "  " && \
