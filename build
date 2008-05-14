@@ -20,6 +20,10 @@ PREFIX=/home/segher/cross
 # Options for make
 MAKEOPTS=-j4
 
+# Compiler self-checks, use "release" for a fast compiler, use "yes,rtl"
+# for lots of checking
+CHECKING=yes,rtl
+
 # End of configuration section.
 
 
@@ -92,7 +96,7 @@ echo -ne "       gcc:" && \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
-	--enable-checking=yes,rtl && \
+	--enable-checking=$CHECKING && \
 ../../timert build ../log-gcc-build make $MAKEOPTS && \
 ../../timert install ../log-gcc-install make install && \
 echo \
