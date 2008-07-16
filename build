@@ -22,7 +22,8 @@ MAKEOPTS=-j9
 
 # Compiler self-checks, use "release" for a fast compiler, use "yes,rtl"
 # for lots of checking
-CHECKING=yes,rtl
+CHECKING=release
+#CHECKING=yes,rtl
 
 # End of configuration section.
 
