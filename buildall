@@ -20,7 +20,7 @@
 ./build "$@" mn10300
 ./build "$@" parisc
 ./build "$@" parisc64 a500_defconfig
-./build "$@" powerpc pmac32_defconfig
+./build "$@" powerpc ppc6xx_defconfig
 ./build "$@" powerpc64
 ./build "$@" s390
 ./build "$@" sh
