@@ -15,9 +15,9 @@
 ./build "$@" m32r
 ./build "$@" m68k
 ./build "$@" m68knommu
-./build "$@" mn10300
 ./build "$@" mips
 ./build "$@" mips64 ip32_defconfig
+./build "$@" mn10300
 ./build "$@" parisc
 ./build "$@" parisc64 a500_defconfig
 ./build "$@" powerpc pmac32_defconfig
