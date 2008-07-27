@@ -28,6 +28,9 @@ CHECKING=release
 # End of configuration section.
 
 
+export PATH=$PREFIX/bin:$PATH
+
+
 BUILD_TOOLCHAIN=yes
 case $1 in
 	--kernel) BUILD_TOOLCHAIN=no; shift ;;
