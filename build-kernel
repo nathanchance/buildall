@@ -14,7 +14,6 @@ fatal() {
 }
 
 
-kernel() {
 mkdir kernel 2>/dev/null
 ( \
 cd kernel && \
@@ -28,7 +27,3 @@ echo -ne "    kernel:" && \
 	echo -n $(grep -ci "warning:" ../log-kernel-build) && \
 	echo -n " warnings" \
 ) || fatal 103
-}
-
-
-kernel

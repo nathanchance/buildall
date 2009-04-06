@@ -14,7 +14,6 @@ fatal() {
 }
 
 
-gcc() {
 mkdir gcc 2>/dev/null
 ( \
 cd gcc && \
@@ -33,7 +32,3 @@ echo -ne "       gcc:" && \
 ../../timert install ../log-gcc-install make install && \
 echo \
 ) || fatal 102
-}
-
-
-gcc

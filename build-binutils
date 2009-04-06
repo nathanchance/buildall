@@ -14,7 +14,6 @@ fatal() {
 }
 
 
-binutils() {
 mkdir binutils 2>/dev/null
 ( \
 cd binutils && \
@@ -25,7 +24,3 @@ $BDIR/timert build ../log-binutils-build make $MAKEOPTS && \
 $BDIR/timert install ../log-binutils-install make install && \
 echo \
 ) || fatal 101
-}
-
-
-binutils
