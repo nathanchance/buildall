@@ -48,19 +48,13 @@ case $ARCH in
 esac
 
 
-fatal() {
-	echo -e "  \e[31mFAILED\e[0m"
-	exit $1
-}
-
-
 export ARCH TARGET DEFCONFIG
 
 
 case $BUILD_TOOLCHAIN in
-	yes) $BDIR/build-binutils || fatal 101;
-	     $BDIR/build-gcc || fatal 102;;
+	yes) $BDIR/build-binutils || exit 101;
+	     $BDIR/build-gcc || exit 102;;
 esac
 
-$BDIR/build-kernel || fatal 103
+$BDIR/build-kernel || exit 103
 echo -e "  \e[32mOK\e[0m"
