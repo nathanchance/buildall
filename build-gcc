@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
+# Released under the terms of the GNU GPL, version 2
+
+
+BDIR=$( (cd `dirname $0` ; pwd))
+source $BDIR/config
+
+
+fatal() {
+	echo -e "  \e[31mFAILED\e[0m"
+	exit $1
+}
+
+
+gcc() {
+mkdir gcc 2>/dev/null
+( \
+cd gcc && \
+echo -ne "       gcc:" && \
+../../timert configure ../log-gcc-configure \
+	$GCC_SRC/configure \
+	--target=$TARGET --enable-targets=all --prefix=$PREFIX \
+	--with-mpfr=$MPFR \
+	--enable-languages=c --without-headers \
+	--enable-sjlj-exceptions --with-system-libunwind \
+	--disable-nls --disable-threads --disable-shared \
+	--disable-libmudflap --disable-libssp --disable-libgomp \
+	--disable-decimal-float \
+	--enable-checking=$CHECKING && \
+../../timert build ../log-gcc-build make $MAKEOPTS && \
+../../timert install ../log-gcc-install make install && \
+echo \
+) || fatal 102
+}
+
+
+gcc
