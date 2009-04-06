@@ -4,28 +4,7 @@
 # Released under the terms of the GNU GPL, version 2
 
 
-# Set these paths to the appropriate values for your local setup
-
-# Where are the various source trees
-BINUTILS_SRC=/n/17/segher/src/binutils
-GCC_SRC=/n/17/segher/src/gcc
-KERNEL_SRC=/n/17/segher/src/kernel
-
-# Where to find the host mpfr library
-MPFR=/opt/cfarm/mpfr-2.3.1
-
-# Where to install the cross toolchains
-PREFIX=/n/17/segher/cross
-
-# Options for make
-MAKEOPTS=-j9
-
-# Compiler self-checks, use "release" for a fast compiler, use "yes,rtl"
-# for lots of checking
-CHECKING=release
-#CHECKING=yes,rtl
-
-# End of configuration section.
+source config
 
 
 export PATH=$PREFIX/bin:$PATH
