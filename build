@@ -3,8 +3,8 @@
 # Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
-
-source config
+BDIR=$( (cd `dirname $0` ; pwd))
+source $BDIR/config
 
 
 export PATH=$PREFIX/bin:$PATH
@@ -54,20 +54,6 @@ fatal() {
 }
 
 
-binutils() {
-mkdir binutils 2>/dev/null
-( \
-cd binutils && \
-echo -ne "  binutils:" && \
-../../timert configure ../log-binutils-configure \
-	$BINUTILS_SRC/configure --target=$TARGET --prefix=$PREFIX && \
-../../timert build ../log-binutils-build make $MAKEOPTS && \
-../../timert install ../log-binutils-install make install && \
-echo \
-) || fatal 101
-}
-
-
 gcc() {
 mkdir gcc 2>/dev/null
 ( \
@@ -109,7 +95,8 @@ echo -ne "    kernel:" && \
 
 
 case $BUILD_TOOLCHAIN in
-	yes) binutils; gcc ;;
+	yes) $BDIR/build-binutils || fatal 101;
+	     gcc ;;
 esac
 
 kernel
