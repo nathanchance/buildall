@@ -54,21 +54,7 @@ fatal() {
 }
 
 
-kernel() {
-mkdir kernel 2>/dev/null
-( \
-cd kernel && \
-echo -ne "    kernel:" && \
-../../timert configure ../log-kernel-configure \
-	make ARCH=$ARCH CROSS_COMPILE=$TARGET- \
-	-C $KERNEL_SRC O=$PWD $DEFCONFIG && \
-../../timert build ../log-kernel-build \
-	make ARCH=$ARCH CROSS_COMPILE=$TARGET- $MAKEOPTS && \
-	echo -n "  " && \
-	echo -n $(grep -ci "warning:" ../log-kernel-build) && \
-	echo -n " warnings" \
-) || fatal 103
-}
+export ARCH TARGET DEFCONFIG
 
 
 case $BUILD_TOOLCHAIN in
@@ -76,5 +62,5 @@ case $BUILD_TOOLCHAIN in
 	     $BDIR/build-gcc || fatal 102;;
 esac
 
-kernel
+$BDIR/build-kernel || fatal 103
 echo -e "  \e[32mOK\e[0m"

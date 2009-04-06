@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
+# Released under the terms of the GNU GPL, version 2
+
+
+BDIR=$( (cd `dirname $0` ; pwd))
+source $BDIR/config
+
+
+fatal() {
+	echo -e "  \e[31mFAILED\e[0m"
+	exit $1
+}
+
+
+kernel() {
+mkdir kernel 2>/dev/null
+( \
+cd kernel && \
+echo -ne "    kernel:" && \
+../../timert configure ../log-kernel-configure \
+	make ARCH=$ARCH CROSS_COMPILE=$TARGET- \
+	-C $KERNEL_SRC O=$PWD $DEFCONFIG && \
+../../timert build ../log-kernel-build \
+	make ARCH=$ARCH CROSS_COMPILE=$TARGET- $MAKEOPTS && \
+	echo -n "  " && \
+	echo -n $(grep -ci "warning:" ../log-kernel-build) && \
+	echo -n " warnings" \
+) || fatal 103
+}
+
+
+kernel
