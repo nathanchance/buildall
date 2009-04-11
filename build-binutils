@@ -5,7 +5,7 @@
 
 
 BDIR=$( (cd `dirname $0` ; pwd))
-source $BDIR/config
+. $BDIR/config
 
 
 fatal() {
