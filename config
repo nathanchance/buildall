@@ -1,15 +1,15 @@
 # Set these options to the appropriate values for your local setup
 
 # Where are the various source trees
-BINUTILS_SRC=/n/12/segher/src/src
-GCC_SRC=/n/12/segher/src/gcc
-KERNEL_SRC=/n/12/segher/src/kernel
+BINUTILS_SRC=/n/17/segher/src/binutils
+GCC_SRC=/n/17/segher/src/gcc
+KERNEL_SRC=/n/17/segher/src/kernel
 
 # Where to find the host mpfr library
-MPFR=/opt/cfarm/mpfr-2.3.1
+MPFR=/opt/cfarm/mpfr-2.4.1
 
 # Where to install the cross toolchains
-PREFIX=/n/12/segher/cross
+PREFIX=/n/17/segher/cross
 
 # Options for make
 MAKEOPTS=-j9
