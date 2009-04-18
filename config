@@ -5,8 +5,8 @@ BINUTILS_SRC=/n/17/segher/src/binutils
 GCC_SRC=/n/17/segher/src/gcc
 KERNEL_SRC=/n/17/segher/src/kernel
 
-# Where to find the host mpfr library
-MPFR=/opt/cfarm/mpfr-2.4.1
+# Extra configure flags
+EXTRA_GCC_CONF="--with-mpfr=/opt/cfarm/mpfr-2.4.1 --with-gmp=/opt/cfarm/gmp-4.2.4"
 
 # Where to install the cross toolchains
 PREFIX=/n/17/segher/cross

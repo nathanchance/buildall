@@ -21,13 +21,13 @@ echo -ne "       gcc:" && \
 ../../timert configure ../log-gcc-configure \
 	$GCC_SRC/configure \
 	--target=$TARGET --enable-targets=all --prefix=$PREFIX \
-	--with-mpfr=$MPFR \
 	--enable-languages=c --without-headers \
 	--enable-sjlj-exceptions --with-system-libunwind \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float \
-	--enable-checking=$CHECKING && \
+	--enable-checking=$CHECKING \
+	$EXTRA_GCC_CONF && \
 ../../timert build ../log-gcc-build make $MAKEOPTS && \
 ../../timert install ../log-gcc-install make install && \
 echo \
