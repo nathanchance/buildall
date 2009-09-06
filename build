@@ -10,10 +10,24 @@ BDIR=$( (cd `dirname $0` ; pwd))
 export PATH=$PREFIX/bin:$PATH
 
 
-BUILD_TOOLCHAIN=yes
-case $1 in
-	--kernel) BUILD_TOOLCHAIN=no; shift ;;
+BUILD_BINUTILS=no
+BUILD_GCC=no
+BUILD_KERNEL=no
+while :; do
+	case $1 in
+		--binutils)	BUILD_BINUTILS=yes; shift ;;
+		--gcc)		BUILD_GCC=yes; shift ;;
+		--kernel)	BUILD_KERNEL=yes; shift ;;
+		--toolchain)	BUILD_BINUTILS=yes; BUILD_GCC=yes; shift ;;
+		*) break
+	esac
+done
+case $BUILD_BINUTILS$BUILD_GCC$BUILD_KERNEL in
+	nonono)	BUILD_BINUTILS=yes;
+		BUILD_GCC=yes;
+		BUILD_KERNEL=yes
 esac
+
 
 ARCH=$1
 DEFCONFIG=${2:-defconfig}
@@ -51,10 +65,14 @@ esac
 export ARCH TARGET DEFCONFIG
 
 
-case $BUILD_TOOLCHAIN in
-	yes) $BDIR/build-binutils || exit 101;
-	     $BDIR/build-gcc || exit 102;;
+case $BUILD_BINUTILS in
+	yes) $BDIR/build-binutils || exit 101
+esac
+case $BUILD_GCC in
+	yes) $BDIR/build-gcc || exit 102
+esac
+case $BUILD_KERNEL in
+	yes) $BDIR/build-kernel || exit 103
 esac
 
-$BDIR/build-kernel || exit 103
 echo -e "  \e[32mOK\e[0m"
