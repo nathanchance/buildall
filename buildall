@@ -3,29 +3,34 @@
 # Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
-./build "$@" alpha
+echo "================== Primary platforms ========================="
 ./build "$@" arm
+./build "$@" mips
+./build "$@" mips64 ip32_defconfig
+./build "$@" powerpc ppc6xx_defconfig
+./build "$@" powerpc64
+./build "$@" sparc
+./build "$@" sparc64
+./build "$@" i386
+./build "$@" x86_64
+echo "================== Secondary platforms ======================="
+./build "$@" parisc
+./build "$@" parisc64 a500_defconfig
+./build "$@" ia64
+./build "$@" s390
+echo "================== Tertiary platforms ========================"
+./build "$@" alpha
 ./build "$@" avr32
 ./build "$@" blackfin
 ./build "$@" cris
 ./build "$@" frv
 ./build "$@" h8300
-./build "$@" i386
-./build "$@" ia64
 ./build "$@" m32r
 ./build "$@" m68k
 ./build "$@" m68knommu
-./build "$@" mips
-./build "$@" mips64 ip32_defconfig
 ./build "$@" mn10300
-./build "$@" parisc
-./build "$@" parisc64 a500_defconfig
-./build "$@" powerpc ppc6xx_defconfig
-./build "$@" powerpc64
-./build "$@" s390
 ./build "$@" sh
 ./build "$@" sh64 cayman_defconfig
-./build "$@" sparc
-./build "$@" sparc64
-./build "$@" x86_64
 ./build "$@" xtensa
+echo "================== Imaginary platforms ======================="
+./build "$@" microblaze
