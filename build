@@ -44,6 +44,7 @@ case $ARCH in
 	parisc)		TARGET=hppa-linux ;;
 	parisc64)	TARGET=hppa64-linux ;;
 	ppc)		TARGET=powerpc-linux ;;
+	score)		TARGET=score-elf ;;
 	sh)		TARGET=sh3-linux ;;
 	v850)		TARGET=v850e-linux ;;
 	*)		TARGET=$ARCH-linux ;;
