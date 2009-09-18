@@ -34,3 +34,4 @@ echo "================== Tertiary platforms ========================"
 ./build "$@" xtensa
 echo "================== Imaginary platforms ======================="
 ./build "$@" microblaze
+./build "$@" score
