@@ -6,6 +6,7 @@ GCC_SRC=/n/17/segher/src/gcc
 KERNEL_SRC=/n/17/segher/src/kernel
 
 # Extra configure flags
+EXTRA_BINUTILS_CONF=""
 EXTRA_GCC_CONF="--with-mpfr=/opt/cfarm/mpfr-2.4.1 --with-gmp=/opt/cfarm/gmp-4.2.4"
 
 # Where to install the cross toolchains

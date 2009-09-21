@@ -19,7 +19,8 @@ mkdir binutils 2>/dev/null
 cd binutils && \
 echo -ne "  binutils:" && \
 $BDIR/timert configure ../log-binutils-configure \
-	$BINUTILS_SRC/configure --target=$TARGET --prefix=$PREFIX && \
+	$BINUTILS_SRC/configure --target=$TARGET --prefix=$PREFIX \
+	$EXTRA_BINUTILS_CONF && \
 $BDIR/timert build ../log-binutils-build make $MAKEOPTS && \
 $BDIR/timert install ../log-binutils-install make install && \
 echo \
