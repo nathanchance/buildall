@@ -9,7 +9,7 @@ BDIR=$( (cd `dirname $0` ; pwd))
 
 
 fatal() {
-	echo -e "  \e[31mFAILED\e[0m"
+	$ECHO -e "  \e[31mFAILED\e[0m"
 	exit $1
 }
 
@@ -17,7 +17,7 @@ fatal() {
 mkdir gcc 2>/dev/null
 ( \
 cd gcc && \
-echo -ne "       gcc:" && \
+$ECHO -ne "       gcc:" && \
 ../../timert configure ../log-gcc-configure \
 	$GCC_SRC/configure \
 	--target=$TARGET --enable-targets=all --prefix=$PREFIX \
@@ -30,5 +30,5 @@ echo -ne "       gcc:" && \
 	$EXTRA_GCC_CONF && \
 ../../timert build ../log-gcc-build make $MAKEOPTS && \
 ../../timert install ../log-gcc-install make install && \
-echo \
+$ECHO \
 ) || fatal 102

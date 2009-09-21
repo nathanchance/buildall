@@ -9,7 +9,7 @@ BDIR=$( (cd `dirname $0` ; pwd))
 
 
 fatal() {
-	echo -e "  \e[31mFAILED\e[0m"
+	$ECHO -e "  \e[31mFAILED\e[0m"
 	exit $1
 }
 
@@ -17,13 +17,13 @@ fatal() {
 mkdir kernel 2>/dev/null
 ( \
 cd kernel && \
-echo -ne "    kernel:" && \
+$ECHO -ne "    kernel:" && \
 ../../timert configure ../log-kernel-configure \
 	make ARCH=$ARCH CROSS_COMPILE=$TARGET- \
 	-C $KERNEL_SRC O=$PWD $DEFCONFIG && \
 ../../timert build ../log-kernel-build \
 	make ARCH=$ARCH CROSS_COMPILE=$TARGET- $MAKEOPTS && \
-	echo -n "  " && \
-	echo -n $(grep -ci "warning:" ../log-kernel-build) && \
-	echo -n " warnings" \
+	$ECHO -n "  " && \
+	$ECHO -n $(grep -ci "warning:" ../log-kernel-build) && \
+	$ECHO -n " warnings" \
 ) || fatal 103

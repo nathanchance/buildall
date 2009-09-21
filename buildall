@@ -3,7 +3,7 @@
 # Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
-echo "================== Primary platforms ========================="
+$ECHO "================== Primary platforms ========================="
 ./build "$@" arm
 ./build "$@" mips
 ./build "$@" mips64 ip32_defconfig
@@ -13,12 +13,12 @@ echo "================== Primary platforms ========================="
 ./build "$@" sparc64
 ./build "$@" i386
 ./build "$@" x86_64
-echo "================== Secondary platforms ======================="
+$ECHO "================== Secondary platforms ======================="
 ./build "$@" parisc
 ./build "$@" parisc64 a500_defconfig
 ./build "$@" ia64
 ./build "$@" s390
-echo "================== Tertiary platforms ========================"
+$ECHO "================== Tertiary platforms ========================"
 ./build "$@" alpha
 ./build "$@" avr32
 ./build "$@" blackfin
@@ -32,6 +32,6 @@ echo "================== Tertiary platforms ========================"
 ./build "$@" sh
 ./build "$@" sh64 cayman_defconfig
 ./build "$@" xtensa
-echo "================== Imaginary platforms ======================="
+$ECHO "================== Imaginary platforms ======================="
 ./build "$@" microblaze
 ./build "$@" score

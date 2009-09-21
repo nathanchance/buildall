@@ -19,3 +19,6 @@ MAKEOPTS=-j9
 # for lots of checking
 CHECKING=release
 #CHECKING=yes,rtl
+
+# Which echo to use.  Should support -e
+ECHO=/n/17/segher/gnu/bin/echo
