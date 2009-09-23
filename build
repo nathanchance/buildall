@@ -76,4 +76,4 @@ case $BUILD_KERNEL in
 	yes) $BDIR/build-kernel || exit 103
 esac
 
-$ECHO -e "  \e[32mOK\e[0m"
+$ECHO -e "  \033[32mOK\033[0m"

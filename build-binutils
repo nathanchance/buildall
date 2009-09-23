@@ -9,7 +9,7 @@ BDIR=$( (cd `dirname $0` ; pwd))
 
 
 fatal() {
-	$ECHO -e "  \e[31mFAILED\e[0m"
+	$ECHO -e "  \033[31mFAILED\033[0m"
 	exit $1
 }
 

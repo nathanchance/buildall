@@ -3,6 +3,10 @@
 # Copyright (C) 2007 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
+BDIR=$( (cd `dirname $0` ; pwd))
+. $BDIR/config
+
+
 $ECHO "================== Primary platforms ========================="
 ./build "$@" arm
 ./build "$@" mips
