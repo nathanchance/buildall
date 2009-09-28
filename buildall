@@ -33,9 +33,9 @@ $ECHO "================== Tertiary platforms ========================"
 ./build "$@" m68k
 ./build "$@" m68knommu
 ./build "$@" mn10300
+./build "$@" score
 ./build "$@" sh
 ./build "$@" sh64 cayman_defconfig
 ./build "$@" xtensa
 $ECHO "================== Imaginary platforms ======================="
 ./build "$@" microblaze
-./build "$@" score
