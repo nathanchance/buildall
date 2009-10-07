@@ -1,0 +1,45 @@
+# Copyright (C) 2007-2009 Segher Boessenkool <segher@kernel.crashing.org>
+
+These scripts build GNU binutils, GCC, and/or a Linux kernel for various
+target architectures.
+
+They will not download the source code for you.  Do that yourself, and
+edit the file "config" to point to whereever you put it.  These scripts
+keep those source trees clean; except that some Linux targets do not
+(only cris currently).
+
+GCC uses some external libraries, you can use GCC_EXTRA_CONF in "config"
+to point to a usable version, if your OS does not come with one.
+
+Type "make" to build the tools buildall uses.
+
+Now you can use:
+
+	./build --binutils <target>		# build binutils
+	./build --gcc <target>			# build GCC
+	./build --toolchain <target>		# build binutils and GCC
+	./build --kernel <target> [defconfig]	# build Linux
+	./build <target> [defconfig]		# build everything
+
+Supported targets are "*-elf", "*-eabi", where "*" is the GNU name for
+the target architecture; or you can use the Linux name of the target,
+and the scripts pick a toolchain target that works, e.g. for "mn10300"
+it picks "am33_2.0-linux".
+
+Finally, for adventurous people, you can use
+
+	./buildall
+
+(or "./buildall --toolchain" etc., all options are passed through to
+./build unmodified) to build all targets supported by Linux at once;
+for architectures that have a 32-bit and a 64-bit variant, it builds
+one of each.  Usually it uses plain "defconfig" for the kernel, for
+biarch targets it picks a representative something_defconfig for the
+non-default size arch.
+
+Build directories are created for each target, named after that target;
+inside there are directories where the components are built, and some
+log files (full output for each build phase of each component).
+
+All questions/flames/patches welcome, or just tell me how it went and
+what you used it for!
