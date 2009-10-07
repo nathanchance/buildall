@@ -8,6 +8,9 @@ edit the file "config" to point to whereever you put it.  These scripts
 keep those source trees clean; except that some Linux targets do not
 (only cris currently).
 
+Create a file "config" with your local settings, "config.example" can
+be used as a template for it.
+
 GCC uses some external libraries, you can use GCC_EXTRA_CONF in "config"
 to point to a usable version, if your OS does not come with one.
 
