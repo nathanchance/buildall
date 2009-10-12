@@ -35,7 +35,10 @@ static void sigchld_handler(int signo, siginfo_t *si, void *uc)
 		default:
 			wait(0);
 			print_time();
-			exit(si->si_status);
+			if (WIFEXITED(si->si_status))
+				exit(WEXITSTATUS(si->si_status));
+			else
+				exit(42);
 	}
 }
 

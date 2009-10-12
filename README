@@ -4,7 +4,7 @@ These scripts build GNU binutils, GCC, and/or a Linux kernel for various
 target architectures.
 
 They will not download the source code for you.  Do that yourself, and
-edit the file "config" to point to whereever you put it.  These scripts
+edit the file "config" to point to wherever you put it.  These scripts
 keep those source trees clean; except that some Linux targets do not
 (only cris currently).
 
