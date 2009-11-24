@@ -20,6 +20,7 @@ cd binutils && \
 $ECHO -ne "  binutils:" && \
 $BDIR/timert configure ../log-binutils-configure \
 	$BINUTILS_SRC/configure --target=$TARGET --prefix=$PREFIX \
+	--disable-nls \
 	$EXTRA_BINUTILS_CONF && \
 $BDIR/timert build ../log-binutils-build make $MAKEOPTS && \
 $BDIR/timert install ../log-binutils-install make install && \
