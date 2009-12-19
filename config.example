@@ -5,6 +5,7 @@
 # Where are the various source trees
 BINUTILS_SRC=/somewhere/binutils
 GCC_SRC=/somewhere/gcc
+# Only if you want to build kernels, ignore otherwise:
 KERNEL_SRC=/somewhere/kernel
 
 # Where to install the cross toolchains
