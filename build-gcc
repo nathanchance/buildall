@@ -25,7 +25,7 @@ $ECHO -ne "       gcc:" && \
 	--enable-sjlj-exceptions --with-system-libunwind \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
-	--disable-decimal-float \
+	--disable-decimal-float --disable-libquadmath \
 	--enable-checking=$CHECKING \
 	$EXTRA_GCC_CONF && \
 ../../timert build ../log-gcc-build make $MAKEOPTS && \
