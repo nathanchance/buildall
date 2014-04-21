@@ -18,6 +18,7 @@ $ECHO "================== Primary platforms ========================="
 ./build "$@" i386
 ./build "$@" x86_64
 $ECHO "================== Secondary platforms ======================="
+./build "$@" aarch64
 ./build "$@" parisc
 ./build "$@" parisc64 a500_defconfig
 ./build "$@" ia64
