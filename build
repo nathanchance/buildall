@@ -36,9 +36,11 @@ case $ARCH in
 	*-eabi)		TARGET=$ARCH ;;
 	*-elf)		TARGET=$ARCH ;;
 
+	arc)		TARGET=arc-elf ;;
 	arm)		TARGET=arm-linux-gnueabi ;;
-	avr32)		TARGET=avr-linux ;;
+	arm64)		TARGET=aarch64-linux ;;
 	blackfin)	TARGET=bfin-uclinux ;;
+	c6x)		TARGET=c6x-elf ;;
 	h8300)		TARGET=h8300-elf ;;
 	m68knommu)	TARGET=m68k-linux ;;
 	mn10300)	TARGET=am33_2.0-linux ;;
@@ -46,7 +48,9 @@ case $ARCH in
 	parisc64)	TARGET=hppa64-linux ;;
 	ppc)		TARGET=powerpc-linux ;;
 	score)		TARGET=score-elf ;;
-	sh)		TARGET=sh3-linux ;;
+	sh)		TARGET=sh4-linux ;;
+	shnommu)	TARGET=sh2-linux ;;
+	tile)		TARGET=tilegx-linux ;;
 	v850)		TARGET=v850e-linux ;;
 	*)		TARGET=$ARCH-linux ;;
 esac
@@ -60,7 +64,7 @@ case $ARCH in
 	mips64)		ARCH=mips ;;
 	parisc64)	ARCH=parisc ;;
 	powerpc64)	ARCH=powerpc ;;
-	sh64)		ARCH=sh ;;
+	shnommu)	ARCH=sh ;;
 esac
 
 
