@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-unsigned int start_time;
+unsigned int start_time, stop_time;
 
 static void print_time(void)
 {
@@ -28,9 +28,11 @@ static void sigchld_handler(int signo, siginfo_t *si, void *uc)
 	switch (si->si_code) {
 		case CLD_STOPPED:
 			fprintf(stderr, "stopped\n");
+			stop_time = time(0);
 			break;
 		case CLD_CONTINUED:
 			fprintf(stderr, "continued\n");
+			start_time += time(0) - stop_time;
 			break;
 		default:
 			wait(0);
