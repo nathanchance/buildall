@@ -9,34 +9,48 @@ BDIR=$( (cd `dirname $0` ; pwd))
 
 $ECHO "================== Primary platforms ========================="
 ./build "$@" arm
+./build "$@" i386
 ./build "$@" mips
 ./build "$@" mips64 ip32_defconfig
 ./build "$@" powerpc ppc6xx_defconfig
 ./build "$@" powerpc64
 ./build "$@" sparc
 ./build "$@" sparc64
-./build "$@" i386
 ./build "$@" x86_64
 $ECHO "================== Secondary platforms ======================="
-./build "$@" aarch64
-./build "$@" parisc
-./build "$@" parisc64 a500_defconfig
-./build "$@" ia64
+./build "$@" arm64
 ./build "$@" s390
 $ECHO "================== Tertiary platforms ========================"
 ./build "$@" alpha
-./build "$@" avr32
+./build "$@" arc
 ./build "$@" blackfin
+./build "$@" c6x
 ./build "$@" cris
 ./build "$@" frv
-./build "$@" h8300
+./build "$@" ia64
 ./build "$@" m32r
 ./build "$@" m68k
-./build "$@" m68knommu
 ./build "$@" mn10300
-./build "$@" score
-./build "$@" sh
+./build "$@" parisc
+./build "$@" parisc64 a500_defconfig
+./build "$@" sh se7750_defconfig
+./build "$@" shnommu se7619_defconfig
 ./build "$@" sh64 cayman_defconfig
+./build "$@" tile
 ./build "$@" xtensa
 $ECHO "================== Imaginary platforms ======================="
 ./build "$@" microblaze
+
+
+# Not in GCC:
+# avr32 (not the same as avr)
+# hexagon
+# metag
+# openrisc
+# unicore32
+
+# Removed from GCC:
+# score
+
+# Removed from Linux:
+# h8300
