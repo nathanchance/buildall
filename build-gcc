@@ -21,12 +21,12 @@ $ECHO -ne "       gcc:" && \
 ../../timert configure ../log-gcc-configure \
 	$GCC_SRC/configure \
 	--target=$TARGET --enable-targets=all --prefix=$PREFIX \
-	--enable-languages=c --without-headers \
+	--enable-languages=c --without-headers --disable-bootstrap \
 	--enable-sjlj-exceptions --with-system-libunwind \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float --disable-libquadmath \
-	--disable-libatomic \
+	--disable-libatomic --disable-libcc1 \
 	--enable-checking=$CHECKING \
 	$EXTRA_GCC_CONF && \
 ../../timert build ../log-gcc-build make $MAKEOPTS && \
