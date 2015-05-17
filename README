@@ -1,18 +1,19 @@
-# Copyright (C) 2007-2009 Segher Boessenkool <segher@kernel.crashing.org>
+# Copyright (C) 2007-2015 Segher Boessenkool <segher@kernel.crashing.org>
 
 These scripts build GNU binutils, GCC, and/or a Linux kernel for various
 target architectures.
 
 They will not download the source code for you.  Do that yourself, and
 edit the file "config" to point to wherever you put it.  These scripts
-keep those source trees clean; except that some Linux targets do not
-(only cris currently).
+keep those source trees clean.
 
 Create a file "config" with your local settings, "config.example" can
 be used as a template for it.
 
 GCC uses some external libraries, you can use GCC_EXTRA_CONF in "config"
-to point to a usable version, if your OS does not come with one.
+to point to a usable version, if your OS does not come with one.  You
+can also switch to the GCC source dir and run contrib/download_prerequisites
+from there.
 
 Type "make" to build the tools buildall uses.
 
