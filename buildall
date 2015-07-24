@@ -27,6 +27,7 @@ $ECHO "================== Tertiary platforms ========================"
 ./build "$@" c6x
 ./build "$@" cris
 ./build "$@" frv
+./build "$@" h8300 edosk2674_defconfig
 ./build "$@" ia64
 ./build "$@" m32r
 ./build "$@" m68k
@@ -51,6 +52,3 @@ $ECHO "================== Imaginary platforms ======================="
 
 # Removed from GCC:
 # score
-
-# Removed from Linux:
-# h8300

@@ -41,7 +41,6 @@ case $ARCH in
 	arm64)		TARGET=aarch64-linux ;;
 	blackfin)	TARGET=bfin-uclinux ;;
 	c6x)		TARGET=c6x-elf ;;
-	h8300)		TARGET=h8300-elf ;;
 	m68knommu)	TARGET=m68k-linux ;;
 	mn10300)	TARGET=am33_2.0-linux ;;
 	parisc)		TARGET=hppa-linux ;;
