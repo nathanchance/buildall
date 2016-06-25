@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2007-2009 Segher Boessenkool <segher@kernel.crashing.org>
+# Copyright (C) 2007-2016 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
 BDIR=$( (cd `dirname $0` ; pwd))
@@ -38,7 +38,8 @@ $ECHO "================== Tertiary platforms ========================"
 ./build "$@" sh se7750_defconfig
 ./build "$@" shnommu se7619_defconfig
 ./build "$@" sh64 cayman_defconfig
-./build "$@" tile
+./build "$@" tilegx
+./build "$@" tilepro
 ./build "$@" xtensa
 $ECHO "================== Imaginary platforms ======================="
 ./build "$@" microblaze
