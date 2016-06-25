@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2007-2009 Segher Boessenkool <segher@kernel.crashing.org>
+# Copyright (C) 2007-2016 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
 
@@ -20,7 +20,7 @@ cd binutils && \
 $ECHO -ne "  binutils:" && \
 $BDIR/timert configure ../log-binutils-configure \
 	$BINUTILS_SRC/configure --target=$TARGET --prefix=$PREFIX \
-	--enable-64-bit-bfd --disable-nls --disable-werror \
+	--enable-64-bit-bfd --disable-nls --disable-werror --enable-obsolete \
 	$EXTRA_BINUTILS_CONF && \
 $BDIR/timert build ../log-binutils-build make $MAKEOPTS && \
 $BDIR/timert install ../log-binutils-install make install && \
