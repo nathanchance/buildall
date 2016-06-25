@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2007-2009 Segher Boessenkool <segher@kernel.crashing.org>
+# Copyright (C) 2007-2016 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
 
@@ -26,7 +26,7 @@ $ECHO -ne "       gcc:" && \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float --disable-libquadmath \
-	--disable-libatomic --disable-libcc1 \
+	--disable-libatomic --disable-libcc1 --disable-libmpx \
 	--enable-checking=$CHECKING \
 	$EXTRA_GCC_CONF && \
 ../../timert build ../log-gcc-build make $MAKEOPTS && \
