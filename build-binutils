@@ -21,6 +21,7 @@ $ECHO -ne "  binutils:" && \
 $BDIR/timert configure ../log-binutils-configure \
 	$BINUTILS_SRC/configure --target=$TARGET --prefix=$PREFIX \
 	--enable-64-bit-bfd --disable-nls --disable-werror --enable-obsolete \
+	--disable-gdb --disable-libdecnumber --disable-readline --disable-sim \
 	$EXTRA_BINUTILS_CONF && \
 $BDIR/timert build ../log-binutils-build make $MAKEOPTS && \
 $BDIR/timert install ../log-binutils-install make install && \
