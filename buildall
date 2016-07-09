@@ -22,7 +22,7 @@ $ECHO "================== Secondary platforms ======================="
 ./build "$@" s390
 $ECHO "================== Tertiary platforms ========================"
 ./build "$@" alpha
-./build "$@" arc
+./build "$@" arc nsim_700_defconfig
 ./build "$@" blackfin
 ./build "$@" c6x
 ./build "$@" cris
