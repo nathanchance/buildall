@@ -37,7 +37,6 @@ $ECHO "================== Tertiary platforms ========================"
 ./build "$@" parisc64 a500_defconfig
 ./build "$@" sh se7750_defconfig
 ./build "$@" shnommu se7619_defconfig
-./build "$@" sh64 cayman_defconfig
 ./build "$@" tilegx
 ./build "$@" tilepro
 ./build "$@" xtensa
@@ -54,3 +53,4 @@ $ECHO "================== Imaginary platforms ======================="
 
 # Removed from GCC:
 # score
+# sh64
