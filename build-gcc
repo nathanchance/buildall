@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (C) 2007-2016 Segher Boessenkool <segher@kernel.crashing.org>
+# Copyright (C) 2007-2017 Segher Boessenkool <segher@kernel.crashing.org>
 # Released under the terms of the GNU GPL, version 2
 
 
@@ -14,6 +14,11 @@ fatal() {
 }
 
 
+case $TARGET in
+	ia64-*)		TARGET_GCC_CONF=--with-system-libunwind ;;
+esac
+
+
 mkdir gcc 2>/dev/null
 ( \
 cd gcc && \
@@ -22,13 +27,12 @@ $ECHO -ne "       gcc:" && \
 	$GCC_SRC/configure \
 	--target=$TARGET --enable-targets=all --prefix=$PREFIX \
 	--enable-languages=c --without-headers --disable-bootstrap \
-	--enable-sjlj-exceptions --with-system-libunwind \
 	--disable-nls --disable-threads --disable-shared \
 	--disable-libmudflap --disable-libssp --disable-libgomp \
 	--disable-decimal-float --disable-libquadmath \
 	--disable-libatomic --disable-libcc1 --disable-libmpx \
 	--enable-checking=$CHECKING \
-	$EXTRA_GCC_CONF && \
+	$TARGET_GCC_CONF $EXTRA_GCC_CONF && \
 ../../timert build ../log-gcc-build make $MAKEOPTS && \
 ../../timert install ../log-gcc-install make install && \
 $ECHO \
