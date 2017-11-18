@@ -35,6 +35,8 @@ $ECHO "================== Tertiary platforms ========================"
 ./build "$@" nios2
 ./build "$@" parisc
 ./build "$@" parisc64 a500_defconfig
+./build "$@" riscv32 riscv32_defconfig
+./build "$@" riscv64
 ./build "$@" sh se7750_defconfig
 ./build "$@" shnommu se7619_defconfig
 ./build "$@" tilegx
