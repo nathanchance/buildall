@@ -37,6 +37,7 @@ case $ARCH in
 	*-elf)		TARGET=$ARCH ;;
 	*-none)		TARGET=$ARCH ;;
 	*-rtems*)	TARGET=$ARCH ;;
+	*-linux*)	TARGET=$ARCH ;;
 
 	arc)		TARGET=arc-elf ;;
 	arm)		TARGET=arm-linux-gnueabi ;;
