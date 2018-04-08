@@ -65,7 +65,7 @@ cd $ARCH
 case $ARCH in
 	mips64)		ARCH=mips ;;
 	parisc64)	ARCH=parisc ;;
-	powerpc64)	ARCH=powerpc ;;
+	powerpc*)	ARCH=powerpc ;;
 	riscv*)		ARCH=riscv ;;
 	shnommu)	ARCH=sh ;;
 esac
