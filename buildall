@@ -23,15 +23,10 @@ $ECHO "================== Secondary platforms ======================="
 $ECHO "================== Tertiary platforms ========================"
 ./build "$@" alpha
 ./build "$@" arc nsim_700_defconfig
-./build "$@" blackfin
 ./build "$@" c6x
-./build "$@" cris
-./build "$@" frv
 ./build "$@" h8300 edosk2674_defconfig
 ./build "$@" ia64
-./build "$@" m32r
 ./build "$@" m68k
-./build "$@" mn10300
 ./build "$@" nios2
 ./build "$@" parisc
 ./build "$@" parisc64 a500_defconfig
@@ -39,8 +34,6 @@ $ECHO "================== Tertiary platforms ========================"
 ./build "$@" riscv64
 ./build "$@" sh se7750_defconfig
 ./build "$@" shnommu se7619_defconfig
-./build "$@" tilegx
-./build "$@" tilepro
 ./build "$@" xtensa
 $ECHO "================== Imaginary platforms ======================="
 ./build "$@" microblaze
@@ -56,3 +49,13 @@ $ECHO "================== Imaginary platforms ======================="
 # Removed from GCC:
 # score
 # sh64
+
+# Removed from Linux:
+# blackfin
+# cris
+# frv
+# m32r
+# mn10300
+# score
+# tilegx
+# tilepro
