@@ -14,6 +14,7 @@ $ECHO "================== Primary platforms ========================="
 ./build "$@" mips64 ip32_defconfig
 ./build "$@" powerpc ppc6xx_defconfig
 ./build "$@" powerpc64
+./build "$@" powerpc64le ppc64le_defconfig
 ./build "$@" sparc
 ./build "$@" sparc64
 ./build "$@" x86_64

@@ -16,6 +16,7 @@ fatal() {
 
 case $TARGET in
 	ia64-*)		TARGET_GCC_CONF=--with-system-libunwind ;;
+	powerpc64le-*)	TARGET_GCC_CONF=--disable-multilib
 esac
 
 
