@@ -47,6 +47,8 @@ case $ARCH in
 	c6x)		TARGET=c6x-elf ;;
 	m68knommu)	TARGET=m68k-linux ;;
 	mn10300)	TARGET=am33_2.0-linux ;;
+	nds32)		TARGET=nds32le-linux ;;
+	openrisc)	TARGET=or1k-linux ;;
 	parisc)		TARGET=hppa-linux ;;
 	parisc64)	TARGET=hppa64-linux ;;
 	ppc)		TARGET=powerpc-linux ;;

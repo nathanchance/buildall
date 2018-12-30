@@ -25,10 +25,14 @@ $ECHO "================== Tertiary platforms ========================"
 ./build "$@" alpha
 ./build "$@" arc nsim_700_defconfig
 ./build "$@" c6x
+./build "$@" csky
+# hexagon does not exist
 ./build "$@" h8300 edosk2674_defconfig
 ./build "$@" ia64
 ./build "$@" m68k
+./build "$@" nds32
 ./build "$@" nios2
+./build "$@" openrisc
 ./build "$@" parisc
 ./build "$@" parisc64 a500_defconfig
 ./build "$@" riscv32 riscv32_defconfig
@@ -41,10 +45,7 @@ $ECHO "================== Imaginary platforms ======================="
 
 
 # Not in GCC:
-# avr32 (not the same as avr)
 # hexagon
-# metag
-# openrisc
 # unicore32
 
 # Removed from GCC:
@@ -52,9 +53,11 @@ $ECHO "================== Imaginary platforms ======================="
 # sh64
 
 # Removed from Linux:
+# avr32
 # blackfin
 # cris
 # frv
+# metag
 # m32r
 # mn10300
 # score
