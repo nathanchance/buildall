@@ -8,7 +8,8 @@ BDIR=$( (cd `dirname $0` ; pwd))
 
 
 $ECHO "================== Primary platforms ========================="
-./build "$@" arm
+./build "$@" arm multi_v5_defconfig
+./build "$@" armhf multi_v7_defconfig
 ./build "$@" i386
 ./build "$@" mips
 ./build "$@" mips64 ip32_defconfig
