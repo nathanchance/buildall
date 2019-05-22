@@ -42,7 +42,7 @@ case $ARCH in
 
 	arc)		TARGET=arc-elf ;;
 	arm)		TARGET=arm-linux-gnueabi ;;
-        armhf)          TARGET=arm-linux-gnueabihf ;;
+	armhf)		TARGET=arm-linux-gnueabihf ;;
 	arm64)		TARGET=aarch64-linux ;;
 	blackfin)	TARGET=bfin-uclinux ;;
 	c6x)		TARGET=c6x-elf ;;
@@ -67,6 +67,7 @@ mkdir $ARCH 2>/dev/null
 cd $ARCH
 
 case $ARCH in
+	armhf)		ARCH=arm ;;
 	mips64)		ARCH=mips ;;
 	parisc64)	ARCH=parisc ;;
 	powerpc*)	ARCH=powerpc ;;
