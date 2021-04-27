@@ -63,6 +63,7 @@ esac
 
 
 $ECHO "Building $ARCH... (target $TARGET)"
+cd $BDIR
 mkdir $ARCH 2>/dev/null
 cd $ARCH
 

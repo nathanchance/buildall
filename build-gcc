@@ -24,7 +24,7 @@ mkdir gcc 2>/dev/null
 ( \
 cd gcc && \
 $ECHO -ne "       gcc:" && \
-../../timert configure ../log-gcc-configure \
+$BDIR/timert configure ../log-gcc-configure \
 	$GCC_SRC/configure \
 	--target=$TARGET --enable-targets=all --prefix=$PREFIX \
 	--enable-languages=c --without-headers --disable-bootstrap \
@@ -34,7 +34,7 @@ $ECHO -ne "       gcc:" && \
 	--disable-libatomic --disable-libcc1 --disable-libmpx \
 	--enable-checking=$CHECKING \
 	$TARGET_GCC_CONF $EXTRA_GCC_CONF && \
-../../timert build ../log-gcc-build make $MAKEOPTS && \
-../../timert install ../log-gcc-install make install && \
+$BDIR/timert build ../log-gcc-build make $MAKEOPTS && \
+$BDIR/timert install ../log-gcc-install make install && \
 $ECHO \
 ) || fatal 102
